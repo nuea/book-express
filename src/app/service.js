@@ -25,7 +25,6 @@ service.updateBook = async (id, body) => {
 service.deleteBookById = async id => {
     const book = await service.getBookById(id)
     await repository.deleteBookById(book.id)
-    return book
 }
 
 module.exports = service

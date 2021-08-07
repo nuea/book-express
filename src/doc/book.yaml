@@ -1,0 +1,184 @@
+tags:
+  - name: Book
+    description: Create API (CRUD)
+
+paths:
+  paths:
+  /books:
+    post:
+      tags:
+      - "books"
+      summary: "Add a new book to the database"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Book object that needs to be added to the database"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            title:
+              type: "string"
+              example: "Node.js"
+            description:
+              type: "string"
+              example: "Learn Node.js with express framework"
+            image:
+              type: "string"
+              example: "imageNode.jpg"
+            price:
+              type: "number"
+              example: "1234.50"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/Book"
+    get:
+      tags:
+      - "books"
+      summary: "Get all books from database"
+      description: ""
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Book"
+  /books/{id}:
+    get:
+      tags:
+      - "books"
+      summary: "Get book by id from database"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id that needs to be fetched."
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/Book"
+    put:
+      tags:
+      - "books"
+      summary: "Updated books"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id that need to be updated."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated book object"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            image:
+              type: "string"
+              example: "imageNodejs02.jpg"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            properties:
+              _id:
+                type: "string"
+                example: "610c0f1c6807e00c1e7bb336"
+              title:
+                type: "string"
+                example: "Node.js"
+              description:
+                type: "string"
+                example: "Learn Node.js with express framework"
+              image:
+                type: "string"
+                example: "imageNodejs02.jpg"
+              price:
+                type: "number"
+                example: "1234.50"
+              created_at:
+                type: "timestamps"
+                example: "2021-08-05T16:17:32.255Z"
+              updated_at:
+                type: "timestamps"
+                example: "2021-08-07T16:26:22.693Z"
+        "404":
+          description: "Not Found"
+          schema:
+            properties:
+              id:
+                type: "string"
+                example: "610c0f1c6807e00c1e7bb444"
+    delete:
+      tags:
+      - "books"
+      summary: "Delete book by id"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id that needs to be deleted"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Ok"
+        "404":
+          description: "Not Found"
+          schema:
+            properties:
+              id:
+                type: "string"
+                example: "610c0f1c6807e00c1e7bb444"
+
+definitions:
+  Book:
+    type: "object"
+    properties:
+      _id:
+        type: "string"
+        example: "610c0f1c6807e00c1e7bb336"
+      title:
+        type: "string"
+        example: "Node.js"
+      description:
+        type: "string"
+        example: "Learn Node.js with express framework"
+      image:
+        type: "string"
+        example: "imageNode.jpg"
+      price:
+        type: "number"
+        example: "1234.50"
+      created_at:
+        type: "timestamps"
+        example: "2021-08-05T16:17:32.255Z"
+      updated_at:
+        type: "timestamps"
+        example: "2021-08-05T16:17:32.255Z"
+    xml:
+      name: "Book"
