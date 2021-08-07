@@ -10,16 +10,18 @@ const failure = (status, error) => {
     return new Failure(status, error)
 }
 
-const success = (res, status, data) => {
-    res.status(status).json(data)
-}
+const response = (res, status, data ) => res.status(status).json(data);
 
 module.exports = {
-    Failure,
+    Success: (res, data = {}) => res.status(200).json(data),
+    Created: (res, data = {}) => res.status(201).json(data),
+    Failure: (res, err) => {
+        console.log(err);
+        if (err instanceof Failure) response(res, err.code, err.error);
+        else if( err ) response(res, 400, {status: '400', message: 'Bad Request'})
+        else response(res, 501);
+    },
     NotFound: (error = {}) => failure(404, error),
-    Forbidden: (error = {}) => failure(403, error),
     BadRequest: (error = {}) => failure(400, error),
     InternalServiceError: (error = {}) => failure(500, error),
-    Success: (res, data = {}) => success(res, 200, data),
-    Created: (res, data = {}) => success(res, 201, data)
 }
