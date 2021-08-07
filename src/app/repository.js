@@ -15,17 +15,17 @@ repository.getBooks = async query => {
     })
 }
 
-// repository.getBookById = async id => {
-//     return await Book.findById({_id: id}).catch(err => {
-//         throw response.InternalServiceError(err)
-//     })
-// }
+repository.getBookById = async id => {
+    return await Book.findById({_id: id}).catch(err => {
+        throw response.InternalServiceError(err)
+    })
+}
 
-// repository.updateBook = async (id, data) => {
-//     return await Book.updateOne({_id: id}, data).catch(err => {
-//         console.log({err})
-//         throw response.InternalServiceError(err)
-//     })
-// }
+repository.updateBook = async (id, data) => {
+    return await Book.updateOne({_id: id}, data).catch(err => {
+        console.log({err})
+        throw response.InternalServiceError(err)
+    })
+}
 
 module.exports = repository

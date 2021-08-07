@@ -6,8 +6,8 @@ class Failure {
 }
   
 const failure = (status, error) => {
-    if ( error instanceof Failure ) return error
-    return new Failure(status, error)
+    if ( error instanceof Failure ) return {id: error}
+    return new Failure(status, {id: error})
 }
 
 const response = (res, status, data ) => res.status(status).json(data);
