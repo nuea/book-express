@@ -13,8 +13,8 @@ service.getBookById = async id => {
     return await repository.getBookById(id)
 }
 
-service.updateBook = async() => {
-    return await repository.updateBook(id)
+service.updateBook = async(id, body) => {
+    return await repository.updateBook(id, body)
 }
 
 module.exports = service

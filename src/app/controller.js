@@ -22,8 +22,9 @@ controller.getBookById = (req, res) => {
 }
 
 controller.updateBook = (req, res) => {
-    service.updateBook(req.params.id, req.body)
-    
+    service.updateBook(req.params.id, req.body).then(
+        result => response.Success(res, result), 
+        error => response.Failure(res, error))
 }
 
 // controller.deleteBookById = (req, res) => {

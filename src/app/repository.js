@@ -21,10 +21,9 @@ repository.getBookById = async id => {
     })
 }
 
-repository.updateBook = async id => {
-    return await Book.updateOne({_id: req.params.id}, req.body, (err, ok) => {
-        if (err) return  res.json(err)
-        res.status(200).json({})
+repository.updateBook = async (id, data) => {
+    return await Book.updateOne({_id: id}, data).catch(err => {
+        throw response.InternalServiceError(err)
     })
 }
 
