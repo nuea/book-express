@@ -9,7 +9,7 @@ db.once('open', function() {
 });
 
 const BookSchema = new mongoose.Schema({
-    title : String,
+    title : { type: String, required: true },
     description : String,
     image : String,
     price : Number,
