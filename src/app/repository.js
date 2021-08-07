@@ -28,4 +28,11 @@ repository.updateBook = async (id, data) => {
     })
 }
 
+repository.deleteBookById = async id => {
+    return await Book.findByIdAndDelete(id).catch(err => {
+        console.log({err})
+        throw response.InternalServiceError(err)
+    })
+}
+
 module.exports = repository

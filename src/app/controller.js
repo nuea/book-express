@@ -29,11 +29,10 @@ controller.updateBook = (req, res) => {
         error => Failure(res, error))
 }
 
-// controller.deleteBookById = (req, res) => {
-//     Book.findByIdAndDelete(req.params.id, (err, book) => {
-//         if (err) return  res.json(err)
-//         res.json(book)
-//     })
-// }
+controller.deleteBookById = (req, res) => {
+    service.deleteBookById(req.params.id).then(
+        result => Success(res, result), 
+        error => Failure(res, error))
+}
 
 module.exports = controller

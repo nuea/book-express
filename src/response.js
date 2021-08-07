@@ -6,8 +6,8 @@ class Failure {
 }
   
 const failure = (status, error) => {
-    if ( error instanceof Failure ) return {id: error}
-    return new Failure(status, {id: error})
+    if ( error instanceof Failure ) return error
+    return new Failure(status, error)
 }
 
 const response = (res, status, data ) => res.status(status).json(data);
@@ -21,7 +21,7 @@ module.exports = {
         else if( err ) response(res, 400, {status: '400', message: 'Bad Request'})
         else response(res, 501);
     },
-    NotFound: (error = {}) => failure(404, error),
+    NotFound: (error = {}) => failure(404, {id: error}),
     BadRequest: (error = {}) => failure(400, error),
     InternalServiceError: (error = {}) => failure(500, error),
 }
