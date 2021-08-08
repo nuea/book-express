@@ -22,6 +22,6 @@ module.exports = {
         else response(res, 501);
     },
     NotFound: (error = {}) => failure(404, {id: error}),
-    BadRequest: (error = {}) => failure(400, error),
-    InternalServiceError: (error = {}) => failure(500, error),
+    BadRequest: (error = {}) => failure(400, {status: '400', message: 'Bad Request'}),
+    InternalServerError: (error = {}) => failure(500, {status: '500', message: 'Internal Server Error'}),
 }

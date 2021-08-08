@@ -18,8 +18,10 @@ service.getBookById = async id => {
 
 service.updateBook = async (id, body) => {    
     const book = await service.getBookById(id)
-    await repository.updateBook(id, {...book.toObject(), ...body})
-    return {...book.toObject(), ...body}
+    const rs = await repository.updateBook(id, {...book.toObject(), ...body})
+    console.log(rs)
+    if(rs.ok == 1) return await service.getBookById(id)
+    
 }
 
 service.deleteBookById = async id => {
