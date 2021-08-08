@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
-const url = 'mongodb://localhost:27017/store'
+
+MONGO_URL = process.env.MONGO_URL || "localhost"
+MONGO_PORT = process.env.MONGO_PORT || "27017"
+const url = `mongodb://${MONGO_URL}:${MONGO_PORT}/store`
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const db = mongoose.connection;
